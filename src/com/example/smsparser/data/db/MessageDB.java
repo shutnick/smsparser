@@ -3,6 +3,7 @@ package com.example.smsparser.data.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.example.smsparser.data.Message;
@@ -66,5 +67,9 @@ public class MessageDB extends SQLiteOpenHelper{
         Cursor messageCursor = mDatabase.query(MESSAGE_LIST_NAME, null, null, null, null, null, null);
         messageCursor.moveToFirst();
         return messageCursor;
+    }
+
+    protected long size() {
+        return DatabaseUtils.queryNumEntries(mDatabase, MESSAGE_LIST_NAME);
     }
 }
